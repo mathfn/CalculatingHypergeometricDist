@@ -1,0 +1,34 @@
+#Para o cálculo desta distribuição hipergeométrica, definiremos os inputs
+
+i = int(input("x:"))
+j = int(input("n:"))
+k = int(input("M:"))
+l = int(input("N:"))
+
+
+#Definimos uma função para o cálculo do fatorial de um número
+
+def factorial(n):
+  if n == 0:
+    return 1
+  else:
+    return n * factorial(n - 1)
+
+#Em seguida, definimos uma função para o cálculo das combinações
+
+def combination(a,b):
+  if a < 0 and b < 0:
+    return None
+  else:
+    result = factorial(a)/(factorial(b)*factorial(a-b))
+    return result
+
+#Por fim, definimos uma função para o cálculo da distribuição hipergeométrica
+
+def h(x,n,M,N):
+  p1 = combination(M,x)
+  p2 = combination(N-M,n-x)
+  p3 = combination(N,n)
+  return (p1*p2)/p3
+
+print("h(x;n,M,N) = ", h(i,j,k,l))
