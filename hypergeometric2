@@ -1,0 +1,39 @@
+#Para o cálculo desta distribuição hipergeométrica, definiremos os seguintes inputs
+print("Este é para o caso em que o valor de x varia em um dado intervalo [x,y] pertencente ao conjunto dos naturais.")
+
+i = int(input("x:"))
+t = int(input("y:"))
+j = int(input("n:"))
+k = int(input("M:"))
+l = int(input("N:"))
+
+#Para o cálculo, definiremos a função factorial e combination
+#Definimos uma função para o cálculo do fatorial de um número
+
+def factorial(n):
+  if n == 0:
+    return 1
+  else:
+    return n * factorial(n - 1)
+
+#Em seguida, definimos uma função para o cálculo das combinações
+
+def combination(a,b):
+  if a < 0 and b < 0:
+    return None
+  else:
+    result = factorial(a)/(factorial(b)*factorial(a-b))
+    return result
+
+#Vamos calcular a distribuição hipergeométrica para o caso em que  valor de x sofre variação.
+#a função range(a,b) vai de a até b-1, motivo porque no laço abaixo ficou range(i,t+1)
+
+soma = 0
+for valor_de_x in range(i,t+1):
+  p1 = combination(k,valor_de_x)
+  p2 = combination(l-k,j-valor_de_x)
+  p3 = combination(l,j)
+  hipergeometric = (p1*p2)/p3
+  soma = soma + hipergeometric
+
+print("h(x;n,M,N) = ", soma)
